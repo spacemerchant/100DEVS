@@ -50,18 +50,34 @@ Methods should throw out an error if repeated twice
 //Refactor after watching MOSH Solution //
 
 
-class Stopwatch {
+function Stopwatch () {
 
-    startTime = 0; //Private 
-    stopTime = 0; // Private
-    running = 0; // Private
+    this.duration = 0; // only public variable
+    let startTime, stopTime, running = 0 ; // Private variables
 
-    constructor () {
-        this.duration = 0 // only public variable
+    this.start = function () {
+        if (running){
+            throw new Error ('Stopwatch is already On');
+        }
+        running = 1;
+        startTime = new Date();
+    }
+    
+    this.stop = function() {
+        if (!running){
+            throw new Error('Stopwatch is not currently running')
+        }
+        running = 0; // using falsy and truthy
+        stopTime = new Date();
+        let totalTime = (stopTime - startTime) / 1000 // private and locally scoped to inside of the stop() method
+        this.duration += totalTime;
     }
 
-    
+    this.reset = function () {
+        startTime, stopTime, running = 0; //Reset variables
+        this.duration = 0;
+    }
+}   
 
-
-}
+let watch = new Stopwatch;
 
