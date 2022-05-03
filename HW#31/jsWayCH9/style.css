@@ -1,0 +1,10 @@
+div {
+    width: 1000px;
+    height: 700px;
+    overflow: auto;
+    resize: both;
+}
+img {
+    width: auto;
+    height: inherit;
+}
